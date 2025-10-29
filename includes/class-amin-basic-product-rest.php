@@ -166,6 +166,13 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 		add_log("Amin_Basic_Products_Rest: set_quantity_permissions_check => succeed");
 		return true;
 	}
+	
+	
+	// بهترین راه‌حل - اضافه کردن این تابع کمکی در کلاس:
+    private function force_type_show_value( $request_value ) {
+        // همیشه 2 برگردون، بدون توجه به ورودی
+        return 2;
+    }
 
 	/**
 	 * Create product
@@ -198,12 +205,27 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The type code provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
 		}
 
-		$abpTypeShow = intval( $request['typeShow'] );
-		if ( ( $abpTypeShow != 2 && $abpTypeShow != 1 ) || $abpTypeShow == null ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 5");
-			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The type show provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
-		}
-
+// 		$abpTypeShow = intval( $request['typeShow'] );
+// 		if ( ( $abpTypeShow != 2 && $abpTypeShow != 1 ) || $abpTypeShow == null ) {
+// 			add_log("Amin_Basic_Products_Rest: create_item => error 5");
+// 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The type show provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
+// 		}
+        //Start
+        // ✅ اعتبارسنجی کن ولی همیشه 2 ذخیره کن
+        
+        if ( !isset($request['typeShow']) || $request['typeShow'] == null ) {
+            add_log("Amin_Basic_Products_Rest: create_item => error 5 - typeShow is missing  (by:viranet)");
+            return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The type show provided doesn\'t in correct format. (by:viranet)' ), array( 'status' => 400 ) );
+        }
+        
+        // همیشه 2 رو ست کن
+        $abpTypeShow = 2;
+        
+        // لاگ برای دیباگ
+        add_log("Amin_Basic_Products_Rest: create_item => typeShow parameter received: " . $request['typeShow'] . ", but forced to 2  (by:viranet)");
+        
+        // END
+        
 		$abpRecordId = $request['recordID'];
 		if ( $abpRecordId == null ) {
 			add_log("Amin_Basic_Products_Rest: create_item => error 6");
