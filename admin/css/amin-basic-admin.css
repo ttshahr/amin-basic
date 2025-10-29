@@ -1,0 +1,28 @@
+.amin-basic-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    margin-top: 20px;
+}
+  
+.amin-basic-table th {
+    padding: 10px 0;
+    background: #39434f !important;
+    color: #fff;
+}
+  
+.amin-basic-table tbody {
+    background: #fff;
+}
+  
+.amin-basic-table tbody tr td {
+    word-break: break-all;
+}
+  
+.amin-basic-table td {
+    position: relative;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: 300;
+}

@@ -1,0 +1,369 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Amin Basic\n"
+"POT-Creation-Date: 2023-07-01 15:10+0430\n"
+"PO-Revision-Date: 2023-07-01 15:11+0430\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: amin-basic.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/class-amin-basic-attribute-rest.php:106
+msgid "You cannot create the product attribute resource."
+msgstr "شما نمی‌توانید attribute محصول را ایجاد کنید"
+
+#: includes/class-amin-basic-attribute-rest.php:122
+msgid "You cannot edit the product attribute resource."
+msgstr "شما نمی‌توانید attribute محصول را ویرایش کنید"
+
+#: includes/class-amin-basic-attribute-rest.php:138
+msgid "You cannot delete the product attribute resource."
+msgstr "شما نمی‌توانید attribute محصول را حذف کنید"
+
+#: includes/class-amin-basic-attribute-rest.php:155
+#: includes/class-amin-basic-attribute-rest.php:197
+#: includes/class-amin-basic-attribute-rest.php:283
+#: includes/class-amin-basic-attribute-term-rest.php:152
+#: includes/class-amin-basic-attribute-term-rest.php:220
+#: includes/class-amin-basic-attribute-term-rest.php:282
+#: includes/class-amin-basic-category-rest.php:153
+#: includes/class-amin-basic-category-rest.php:267
+#: includes/class-amin-basic-category-rest.php:390
+#: includes/class-amin-basic-customer-rest.php:210
+#: includes/class-amin-basic-order-rest.php:286
+#: includes/class-amin-basic-product-rest.php:181
+#: includes/class-amin-basic-product-rest.php:284
+#: includes/class-amin-basic-product-rest.php:409
+#: includes/class-amin-basic-product-rest.php:456
+#: includes/class-amin-basic-product-variation-rest.php:154
+#: includes/class-amin-basic-product-variation-rest.php:236
+#: includes/class-amin-basic-product-variation-rest.php:321
+msgid "Please provide all required parameters."
+msgstr "لطفا تمام پارامترهای مورد نیاز را ارائه دهید."
+
+#: includes/class-amin-basic-attribute-rest.php:165
+msgid "A product attribute with the code or record id provided already exists."
+msgstr "یک ویژگی محصول با code یا RecordID ارائه شده از قبل وجود دارد."
+
+#: includes/class-amin-basic-attribute-rest.php:173
+msgid "Product attribute has been successfully added."
+msgstr "attribute محصول با موفقیت اضافه شد."
+
+#: includes/class-amin-basic-attribute-rest.php:179
+#: includes/class-amin-basic-attribute-rest.php:267
+#: includes/class-amin-basic-attribute-rest.php:304
+#: includes/class-amin-basic-attribute-term-rest.php:203
+#: includes/class-amin-basic-attribute-term-rest.php:266
+#: includes/class-amin-basic-attribute-term-rest.php:311
+#: includes/class-amin-basic-category-rest.php:249
+#: includes/class-amin-basic-category-rest.php:372
+#: includes/class-amin-basic-category-rest.php:425
+#: includes/class-amin-basic-customer-rest.php:192
+#: includes/class-amin-basic-order-rest.php:304
+#: includes/class-amin-basic-product-rest.php:266
+#: includes/class-amin-basic-product-rest.php:391
+#: includes/class-amin-basic-product-rest.php:438
+#: includes/class-amin-basic-product-rest.php:500
+#: includes/class-amin-basic-product-variation-rest.php:218
+#: includes/class-amin-basic-product-variation-rest.php:303
+#: includes/class-amin-basic-product-variation-rest.php:351
+msgid "Internal error."
+msgstr "خطای داخلی"
+
+#: includes/class-amin-basic-attribute-rest.php:223
+#: includes/class-amin-basic-attribute-rest.php:345
+msgid "Invalid product attribute name too long."
+msgstr "نام attribute محصول بیش از حد طولانی است."
+
+#: includes/class-amin-basic-attribute-rest.php:226
+#: includes/class-amin-basic-attribute-rest.php:348
+msgid "Invalid product attribute name reserved."
+msgstr "نام attribute محصوب رزرو شده است."
+
+#: includes/class-amin-basic-attribute-rest.php:233
+#: includes/class-amin-basic-attribute-rest.php:355
+msgid "Invalid product attribute name already exists."
+msgstr "نام attribute محصول از قبل وجود دارد"
+
+#: includes/class-amin-basic-attribute-rest.php:258
+#: includes/class-amin-basic-attribute-rest.php:289
+#: includes/class-amin-basic-attribute-term-rest.php:236
+#: includes/class-amin-basic-attribute-term-rest.php:298
+#: includes/class-amin-basic-category-rest.php:287
+#: includes/class-amin-basic-category-rest.php:410
+#: includes/class-amin-basic-customer-rest.php:239
+#: includes/class-amin-basic-product-rest.php:426
+#: includes/class-amin-basic-product-variation-rest.php:338
+msgid "The record id provided doesn't exist."
+msgstr "RecordID ارائه شده وجود ندارد."
+
+#: includes/class-amin-basic-attribute-rest.php:263
+msgid "Product attribute has been successfully updated."
+msgstr "attribute محصول با موفقیت به روز شد."
+
+#: includes/class-amin-basic-attribute-rest.php:300
+msgid "Product attribute has been successfully deleted."
+msgstr "attribute محصول با موفقیت حذف شد."
+
+#: includes/class-amin-basic-attribute-term-rest.php:104
+msgid "You cannot create the attribute term resource."
+msgstr "شما نمی توانید منبع attribute term  را ایجاد کنید."
+
+#: includes/class-amin-basic-attribute-term-rest.php:120
+msgid "You cannot edit the attribute term resource."
+msgstr "شما نمی توانید منبع attribute term  را اصلاح کنید."
+
+#: includes/class-amin-basic-attribute-term-rest.php:136
+msgid "You cannot delete the attribute term resource."
+msgstr "شما نمی توانید منبع attribute term  را حذف کنید."
+
+#: includes/class-amin-basic-attribute-term-rest.php:161
+#: includes/class-amin-basic-category-rest.php:233
+#: includes/class-amin-basic-category-rest.php:325
+msgid "The parent code provided doesn't exist."
+msgstr "parent code ارائه شده وجود ندارد."
+
+#: includes/class-amin-basic-attribute-term-rest.php:185
+msgid "An attribute term with the code or record id provided already exists."
+msgstr "یک attribute term با code یا RecordID ارائه شده از قبل وجود دارد."
+
+#: includes/class-amin-basic-attribute-term-rest.php:191
+#: includes/class-amin-basic-attribute-term-rest.php:248
+msgid "An attribute term with the name provided already exists."
+msgstr "یک attribute term با نام ارائه شده از قبل وجود دارد."
+
+#: includes/class-amin-basic-attribute-term-rest.php:199
+msgid "Attribute term has been successfully added."
+msgstr "Attribute term با موفقیت اضافه شد."
+
+#: includes/class-amin-basic-attribute-term-rest.php:262
+msgid "Attribute term has been successfully updated."
+msgstr "Attribute term با موفقیت به روز شد."
+
+#: includes/class-amin-basic-attribute-term-rest.php:307
+msgid "Attribute term has been successfully deleted."
+msgstr "Attribute term با موفقیت حذف شد."
+
+#: includes/class-amin-basic-category-rest.php:104
+msgid "You cannot create the products category resource."
+msgstr "شما نمی توانید منبع دسته محصولات را ایجاد کنید."
+
+#: includes/class-amin-basic-category-rest.php:120
+msgid "You cannot edit the products category resource."
+msgstr "شما نمی توانید منبع دسته محصولات را ویرایش کنید."
+
+#: includes/class-amin-basic-category-rest.php:136
+msgid "You cannot delete the products category resource."
+msgstr "شما نمی توانید منبع دسته محصولات را حذف کنید."
+
+#: includes/class-amin-basic-category-rest.php:159
+#: includes/class-amin-basic-category-rest.php:300
+#: includes/class-amin-basic-product-rest.php:187
+msgid "The code provided doesn't in correct format."
+msgstr "کد ارائه شده در قالب صحیح نیست."
+
+#: includes/class-amin-basic-category-rest.php:167
+#: includes/class-amin-basic-category-rest.php:352
+msgid "The type level provided doesn't in correct format."
+msgstr "سطح نوع ارائه شده در قالب صحیح نیست."
+
+#: includes/class-amin-basic-category-rest.php:173
+#: includes/class-amin-basic-category-rest.php:362
+#: includes/class-amin-basic-product-rest.php:204
+msgid "The type show provided doesn't in correct format."
+msgstr "نوع نمایش ارائه شده در قالب درست نیست."
+
+#: includes/class-amin-basic-category-rest.php:179
+#: includes/class-amin-basic-category-rest.php:291
+#: includes/class-amin-basic-category-rest.php:414
+#: includes/class-amin-basic-customer-rest.php:216
+#: includes/class-amin-basic-product-rest.php:210
+#: includes/class-amin-basic-product-rest.php:349
+#: includes/class-amin-basic-product-rest.php:430
+#: includes/class-amin-basic-product-variation-rest.php:242
+#: includes/class-amin-basic-product-variation-rest.php:342
+msgid "The record id provided doesn't in correct format."
+msgstr "شناسه رکورد ارائه شده در قالب صحیح نیست."
+
+#: includes/class-amin-basic-category-rest.php:197
+msgid "A category with the code provided already exists."
+msgstr "یک دسته با کد ارائه شده از قبل وجود دارد."
+
+#: includes/class-amin-basic-category-rest.php:208
+msgid "A category with the name provided already exists."
+msgstr "یک دسته با نام ارائه شده از قبل وجود دارد."
+
+#: includes/class-amin-basic-category-rest.php:245
+msgid "Product category has been successfully added."
+msgstr "دسته محصول با موفقیت اضافه شد."
+
+#: includes/class-amin-basic-category-rest.php:333
+msgid "The parent code provided doesn't in correct format."
+msgstr "کد والد ارائه شده در قالب درست نیست."
+
+#: includes/class-amin-basic-category-rest.php:342
+#: includes/class-amin-basic-product-rest.php:192
+msgid "The name provided doesn't in correct format."
+msgstr "کد والد ارائه شده در قالب درست نیست."
+
+#: includes/class-amin-basic-category-rest.php:368
+#: includes/class-amin-basic-product-variation-rest.php:299
+msgid "Product category has been successfully updated."
+msgstr "دسته محصول با موفقیت به روز شد."
+
+#: includes/class-amin-basic-category-rest.php:421
+msgid "Product category has been successfully deleted."
+msgstr "دسته محصول با موفقیت حذف شد."
+
+#: includes/class-amin-basic-customer-rest.php:93
+msgid "You cannot get the customer resource."
+msgstr "شما نمی توانید منبع مشتری را دریافت کنید."
+
+#: includes/class-amin-basic-customer-rest.php:109
+msgid "You cannot edit the customer resource."
+msgstr "شما نمی توانید منبع مشتری را ویرایش کنید."
+
+#: includes/class-amin-basic-customer-rest.php:221
+msgid "The customer id provided doesn't in correct format."
+msgstr "شناسه مشتری ارائه شده در قالب صحیح نیست."
+
+#: includes/class-amin-basic-customer-rest.php:232
+msgid "The customer id provided already exist."
+msgstr "شناسه مشتری ارائه شده از قبل وجود دارد."
+
+#: includes/class-amin-basic-customer-rest.php:246
+msgid "Customer club id has been successfully set."
+msgstr "شناسه باشگاه مشتریان با موفقیت تنظیم شد."
+
+#: includes/class-amin-basic-customer-rest.php:250
+msgid "Customer club id already set."
+msgstr "شناسه باشگاه مشتریان قبلاً تنظیم شده است."
+
+#: includes/class-amin-basic-order-rest.php:94
+msgid "You cannot get the order resource."
+msgstr "شما نمی توانید منبع سفارش را دریافت کنید."
+
+#: includes/class-amin-basic-order-rest.php:110
+msgid "You cannot edit the order resource."
+msgstr "شما نمی توانید منبع سفارش را ویرایش کنید."
+
+#: includes/class-amin-basic-order-rest.php:269
+msgid "No new order found."
+msgstr "سفارش جدیدی پیدا نشد"
+
+#: includes/class-amin-basic-order-rest.php:295
+msgid "Order number not found."
+msgstr "شماره سفارش پیدا نشد"
+
+#: includes/class-amin-basic-order-rest.php:300
+msgid "Order status has been successfully updated."
+msgstr "وضعیت سفارش با موفقیت به روز شد."
+
+#: includes/class-amin-basic-product-rest.php:116
+msgid "You cannot create the product resource."
+msgstr "شما نمی توانید منبع محصول را ایجاد کنید."
+
+#: includes/class-amin-basic-product-rest.php:132
+msgid "You cannot edit the product resource."
+msgstr "شما نمی توانید منبع محصول را ویرایش کنید."
+
+#: includes/class-amin-basic-product-rest.php:148
+msgid "You cannot delete the product resource."
+msgstr "شما نمی توانید منبع محصول را حذف کنید."
+
+#: includes/class-amin-basic-product-rest.php:164
+msgid "You cannot set quantity of the product resource."
+msgstr "شما نمی توانید مقدار منبع محصول را تنظیم کنید."
+
+#: includes/class-amin-basic-product-rest.php:198
+msgid "The type code provided doesn't in correct format."
+msgstr "کد نوع ارائه شده در قالب صحیح نیست."
+
+#: includes/class-amin-basic-product-rest.php:238
+#: includes/class-amin-basic-product-variation-rest.php:182
+msgid "A product with the code, record id or sku provided already exists."
+msgstr "محصولی با کد، شناسه رکورد یا sku ارائه شده از قبل وجود دارد."
+
+#: includes/class-amin-basic-product-rest.php:262
+#: includes/class-amin-basic-product-variation-rest.php:214
+msgid "Product has been successfully added."
+msgstr "محصول با موفقیت اضافه شد"
+
+#: includes/class-amin-basic-product-rest.php:362
+#: includes/class-amin-basic-product-variation-rest.php:278
+msgid "The record id provided doesn't exists."
+msgstr "شناسه رکورد ارائه شده وجود ندارد."
+
+#: includes/class-amin-basic-product-rest.php:387
+#: includes/class-amin-basic-product-rest.php:496
+msgid "Product has been successfully updated."
+msgstr "محصول با موفقیت به روز شد."
+
+#: includes/class-amin-basic-product-rest.php:435
+#: includes/class-amin-basic-product-variation-rest.php:347
+msgid "Product has been successfully deleted."
+msgstr "محصول با موفقیت حذف شد."
+
+#: includes/class-amin-basic-product-rest.php:483
+msgid "The item code 2 provided doesn't exist."
+msgstr "کد مورد 2 ارائه شده وجود ندارد."
+
+#: includes/class-amin-basic-product-rest.php:490
+msgid "The item code provided doesn't exist."
+msgstr "کد مورد ارائه شده وجود ندارد."
+
+#: includes/class-amin-basic-product-variation-rest.php:105
+msgid "You cannot create the product variation resource."
+msgstr "شما نمی توانید منبع تنوع محصول را ایجاد کنید."
+
+#: includes/class-amin-basic-product-variation-rest.php:121
+msgid "You cannot edit the product variation resource."
+msgstr "شما نمی توانید منبع تنوع محصول را ویرایش کنید."
+
+#: includes/class-amin-basic-product-variation-rest.php:137
+msgid "You cannot delete the product variation resource."
+msgstr "شما نمی توانید منبع تنوع محصول را حذف کنید."
+
+#: includes/class-amin-basic-product-variation-rest.php:207
+msgid "The parent product is type of simple."
+msgstr "محصول مادر از نوع ساده است."
+
+#: includes/class-amin-basic-product-variation-rest.php:260
+msgid "A product with the sku provided already exists."
+msgstr "محصولی با sku ارائه شده از قبل وجود دارد."
+
+#. Plugin Name of the plugin/theme
+msgid "Amin Basic"
+msgstr "افزونه امین"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://AliJannesary.ir"
+msgstr "https://AliJannesary.ir"
+
+#. Description of the plugin/theme
+msgid "Plugin to connect Amin's accounting software to WordPress websites."
+msgstr "افزونه اتصال نرم افزار حسابداری امین به وب سایت های وردپرسی"
+
+#. Author of the plugin/theme
+msgid "Ali Jannesary"
+msgstr "علی جان نثاری"
+
+#~ msgid "Amin Basic Plugin."
+#~ msgstr "افزونه امین"
+
+#~ msgid "Ehsan Tehrani"
+#~ msgstr "احسان تهرانی"
