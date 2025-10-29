@@ -90,7 +90,7 @@ class Amin_Basic_Product_Attributes_Rest extends WC_REST_Product_Attributes_Cont
 
 		) );
 
-		add_log("register routes Product_Attributes_Rest");
+		// add_log("register routes Product_Attributes_Rest");
 	}
 
 	/**

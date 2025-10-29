@@ -99,7 +99,7 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 
 		) );
 		
-		add_log("Amin_Basic_Products_Rest: register_routes => ...");
+		// add_log("Amin_Basic_Products_Rest: register_routes => ...");
 
 	}
 

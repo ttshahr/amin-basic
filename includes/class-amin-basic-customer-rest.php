@@ -77,7 +77,7 @@ class Amin_Basic_Customers_Rest extends WC_REST_Customers_Controller {
 
 		) );
 		
-		add_log("Amin_Basic_Customers_Rest: register_routes => ...");
+		// add_log("Amin_Basic_Customers_Rest: register_routes => ...");
 	}
 
 	/**

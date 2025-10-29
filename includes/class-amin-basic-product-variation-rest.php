@@ -88,7 +88,7 @@ class Amin_Basic_Product_Variations_Rest extends WC_REST_Product_Variations_Cont
 
 		) );
 		
-		add_log("Amin_Basic_Product_Variations_Rest: register_routes => ...");
+		// add_log("Amin_Basic_Product_Variations_Rest: register_routes => ...");
 
 	}
 

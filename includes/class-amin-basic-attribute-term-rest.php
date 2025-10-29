@@ -88,7 +88,7 @@ class Amin_Basic_Product_Attributes_Terms_Rest extends WC_REST_Terms_Controller 
 
 		) );
 		
-		add_log("Amin_Basic_Product_Attributes_Terms_Rest: register_routes => ...");
+		// add_log("Amin_Basic_Product_Attributes_Terms_Rest: register_routes => ...");
 	}
 
 	/**

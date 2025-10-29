@@ -33,7 +33,7 @@ define( 'AMIN_BASIC_DASHBOARD_IMAGE', plugin_dir_url(__FILE__) . 'admin/images/'
  * Rename this for your plugin and update it as you release new versions.
  */
 
-define( 'AMIN_BASIC_VERSION', '1.1403.06.20' );
+// define( 'AMIN_BASIC_VERSION', '1.1403.06.20' );
 define( 'AMIN_BASIC_DASHBOARD_IMAGE', plugin_dir_url(__FILE__) . 'admin/images/' );
 
 include(plugin_dir_path( __FILE__ ).'libs/notificator.php');
@@ -124,6 +124,16 @@ function delete_log(){
 
 	return $count;
 }
+
+// در ابتدای amin-basic.php بعد از تعریف add_log:
+add_action('parse_request', function() {
+    if (strpos($_SERVER['REQUEST_URI'], '/wc/api/') !== false) {
+        add_log('📥 AMIN Request Detected: ' . $_SERVER['REQUEST_URI']);
+        add_log('📥 Request Method: ' . $_SERVER['REQUEST_METHOD']);
+        add_log('📥 Request Data: ' . json_encode($_POST));
+    }
+});
+
 /**
 *add_action('shutdown', function(){
 *	global $wpdb;

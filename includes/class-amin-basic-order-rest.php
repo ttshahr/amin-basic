@@ -77,7 +77,7 @@ class Amin_Basic_Orders_Rest extends WC_REST_Orders_Controller {
 
 		) );
 		
-		add_log("Amin_Basic_Orders_Rest: register_routes => ...");
+		// add_log("Amin_Basic_Orders_Rest: register_routes => ...");
 
 	}
 

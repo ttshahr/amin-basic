@@ -175,3 +175,9 @@ curl -X POST https://yoursite.com/wp-json/wc/api/products/create \
   -d '{"code": 123, "name": "Test Product", "typeShow": 2, "recordID": "test-123"}'
 
 
+🎯 نحوه کار فایل REST محصولات:
+php
+class Amin_Basic_Products_Rest extends WC_REST_Products_Controller
+از کلاس اصلی محصولات ووکامرس ارث‌بری کرده
+
+endpoint های اختصاصی برای امین اضافه می‌کنه
