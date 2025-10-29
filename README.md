@@ -195,3 +195,22 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller
 از کلاس اصلی محصولات ووکامرس ارث‌بری کرده
 
 endpoint های اختصاصی برای امین اضافه می‌کنه
+
+
+
+
+# نمونه خروجی لاگ اختصاصی ویرا برای اجبار کردن تایپ شو
+
+📝 نمونه خروجی لاگ:
+
+اگر امین 1 بفرسته:
+recordID:12345 typeShow received: 1 → converted to: 2
+
+اگر امین 2 بفرسته:
+recordID:12345 typeShow: 2 (correct)
+
+اگر امین 0 بفرسته:
+recordID:12345 typeShow received: 0 → converted to: 2
+
+اگر امین null بفرسته:
+recordID:12345 typeShow received:  → converted to: 2

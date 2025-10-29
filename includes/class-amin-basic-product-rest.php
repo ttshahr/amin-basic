@@ -428,13 +428,28 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 		$product_data['description'] = $request['description'];
 		$product_data['sku'] = $request['technicalcode'];
 		$product_data['in_box'] = $request['inBox'];
-		$product_data['type_show'] = $request['typeShow'];
+// 		$product_data['type_show'] = $request['typeShow'];
+        
+        // بخش بروز شده توسط ویرانت
+        $receivedTypeShow = $request['typeShow'];
+        $product_data['type_show'] = 2; // همیشه 2 باشه
+        
 		$product_data['recordID'] = $request['recordID'];
 		$product_data['taxable'] = $request['taxable'];
 		$product_data['attributes_code'] = $request['attributes_code'];
-add_log(' recordID:' .$request['recordID'] . ' typeShow:' . $request['typeShow']);
-		$res = $this->edit_product( $product_object, $product_data );
 
+// add_log(' recordID:' .$request['recordID'] . ' typeShow:' . $request['typeShow']);
+// 		$res = $this->edit_product( $product_object, $product_data );
+        
+        // بخش بروز شده توسط ویرانت
+        // 🔧 لاگ هوشمند:
+        if ($receivedTypeShow != '2') {
+            add_log(' recordID:' . $request['recordID'] . ' typeShow received: ' . $receivedTypeShow . ' → converted to: 2');
+        } else {
+            add_log(' recordID:' . $request['recordID'] . ' typeShow: 2 (correct)');
+        }
+        //END
+        
 		if ( $res ) {
 			$data['code'] = Amin_Basic_Response_Code::Product_Updated;
 			$data['message'] = __( 'Product has been successfully updated.', '' );
