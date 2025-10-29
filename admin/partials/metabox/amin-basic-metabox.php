@@ -19,7 +19,7 @@ $unitName = get_post_meta( $post->ID, 'abpUnitName', true );
         </tr>
         <tr>
             <th scope="row">
-                <label for="abpInbox">
+                <label for="abpInBox">
                     تعداد در بسته:
                 </label>
             </th>
