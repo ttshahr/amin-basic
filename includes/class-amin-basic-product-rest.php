@@ -643,12 +643,11 @@ add_log(' recordID:' .$request['recordID'] . ' typeShow:' . $request['typeShow']
 		}
 
 		update_post_meta( $product_id, '_manage_stock', true );
-
 		update_post_meta( $product_id, 'abpCode', $data['code'] );
 		update_post_meta( $product_id, 'abpTypeShow', $data['type_show'] );
 		update_post_meta( $product_id, 'abpUnitName', $data['unit_name'] );
 		update_post_meta( $product_id, 'abpInBox', $data['in_box'] );
-		update_post_meta( $product_id, 'abpRecordId', $data['recordID'] );
+		update_post_meta($product_id, 'abprecordid', strtolower($data['recordID']));
 		$res = $product->save();
 
 		add_log("Amin_Basic_Products_Rest: create_product => ...");

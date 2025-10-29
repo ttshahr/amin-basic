@@ -1,35 +1,43 @@
-amin-basic/
-├── 📄 amin-basic.php (فایل اصلی)
-├── 📁 includes/
-│   ├── 📄 class-amin-basic.php (کلاس اصلی)
-│   ├── 📄 class-amin-basic-activator.php
-│   ├── 📄 class-amin-basic-deactivator.php
-│   ├── 📄 class-amin-basic-loader.php
-│   ├── 📄 class-amin-basic-i18n.php
-│   ├── 📄 class-amin-basic-category-rest.php
-│   ├── 📄 class-amin-basic-product-rest.php
-│   ├── 📄 class-amin-basic-customer-rest.php
-│   ├── 📄 class-amin-basic-product-variation-rest.php
-│   ├── 📄 class-amin-basic-attribute-rest.php
-│   ├── 📄 class-amin-basic-attribute-term-rest.php
-│   └── 📄 class-amin-basic-order-rest.php
-├── 📁 admin/
-│   ├── 📄 class-amin-basic-admin.php
-│   ├── 📄 class-amin-basic-admin-menu.php
-│   ├── 📁 partials/
-│   │   └── 📁 metabox/
-│   │       └── 📄 amin-basic-metabox.php
-│   ├── 📁 css/
-│   └── 📁 js/
-├── 📁 public/
-│   ├── 📄 class-amin-basic-public.php
-│   ├── 📁 css/
-│   └── 📁 js/
-├── 📁 libs/
-│   └── 📄 notificator.php
-├── 📁 logs/ (ایجاد شده هنگام فعالیت)
-└── 📁 languages/
+#ساختار درختی
 
+amin-basic/
+├── 📄 amin-basic.php (فایل اصلی - bootstrap کننده افزونه)
+├── 📄 index.php (محافظت از پوشه - Silence is golden)
+├── 📁 includes/
+│   ├── 📄 index.php (محافظت از پوشه)
+│   ├── 📄 class-amin-basic.php (هسته اصلی - مدیریت لودر و هوک‌ها)
+│   ├── 📄 class-amin-basic-activator.php (فعال‌سازی - ایجاد جدول‌های دیتابیس)
+│   ├── 📄 class-amin-basic-deactivator.php (غیرفعال‌سازی)
+│   ├── 📄 class-amin-basic-loader.php (مدیریت هوک‌های وردپرس)
+│   ├── 📄 class-amin-basic-i18n.php (بین‌المللی‌سازی)
+│   ├── 📄 class-amin-basic-category-rest.php (REST API دسته‌بندی‌ها)
+│   ├── 📄 class-amin-basic-product-rest.php (REST API محصولات - ایجاد/ویرایش/حذف)
+│   ├── 📄 class-amin-basic-customer-rest.php (REST API مشتریان)
+│   ├── 📄 class-amin-basic-product-variation-rest.php (REST API محصولات متغیر)
+│   ├── 📄 class-amin-basic-attribute-rest.php (REST API ویژگی‌ها)
+│   ├── 📄 class-amin-basic-attribute-term-rest.php (REST API مقادیر ویژگی‌ها)
+│   └── 📄 class-amin-basic-order-rest.php (REST API سفارشات)
+├── 📁 admin/
+│   ├── 📄 index.php (محافظت از پوشه)
+│   ├── 📄 class-amin-basic-admin.php (مدیریت استایل‌ها و اسکریپت‌های admin)
+│   ├── 📄 class-amin-basic-admin-menu.php (منوهای مدیریت)
+│   ├── 📁 partials/
+│   │   ├── 📄 index.php (محافظت از پوشه)
+│   │   └── 📁 metabox/
+│   │       ├── 📄 index.php (محافظت از پوشه)
+│   │       └── 📄 amin-basic-metabox.php (متاباکس نمایش اطلاعات امین در محصولات)
+│   ├── 📁 css/ (استایل‌های مدیریت)
+│   └── 📁 js/ (اسکریپت‌های مدیریت)
+├── 📁 public/
+│   ├── 📄 index.php (محافظت از پوشه)
+│   ├── 📄 class-amin-basic-public.php (REST API و فیلترهای front-end)
+│   ├── 📁 css/ (استایل‌های front-end)
+│   └── 📁 js/ (اسکریپت‌های front-end)
+├── 📁 libs/
+│   ├── 📄 index.php (محافظت از پوشه)
+│   └── 📄 notificator.php (سیستم ارسال نوتیفیکیشن)
+├── 📁 logs/ (ایجاد شده هنگام فعالیت - ذخیره لاگ‌های روزانه)
+└── 📁 languages/ (فایل‌های ترجمه)
 
 🗃️ دیتابیس‌های ایجاد شده:
 
@@ -55,9 +63,9 @@ wp_amin_basic_new_order_statuses
 
 ## 🔄 جریان داده‌ها
 
-### ۱. جهت اصلی: امین → ووکامرس
+### ۱. جهت اصلی: امین به ووکامرس
 
-نرم‌افزار امین → درخواست HTTP → WordPress REST API → افزونه → ووکامرس
+امین → HTTP Request → WordPress → create_item() → create_product() → ووکامرس
 
 ### ۲. فیلترینگ محتوا:
 - فقط محصولات و دسته‌بندی‌هایی نمایش داده می‌شوند که `abpTypeShow = 2` داشته باشند
