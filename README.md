@@ -160,7 +160,7 @@ POST /wc/api/orders/[endpoints] # مدیریت سفارشات
 - فرمت: `YYYY-MM-DD.txt`
 
 ### تست endpoint ها:
-```bash
+
 # ایجاد محصول
 curl -X POST https://yoursite.com/wp-json/wc/api/products/create \
   -H "Content-Type: application/json" \
