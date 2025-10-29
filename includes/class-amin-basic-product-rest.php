@@ -224,9 +224,25 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
         // لاگ برای دیباگ
         add_log("Amin_Basic_Products_Rest: create_item => typeShow parameter received: " . $request['typeShow'] . ", but forced to 2  (by:viranet)");
         
+    
+        
+        // ❌ حالت فعلی:
+		//$abpRecordId = $request['recordID'];
+		
+		// ✅ حالت اصلاح شده:
+        $receivedRecordId = $request['recordID'];
+        $abpRecordId = strtolower($receivedRecordId); // همیشه lowercase
+        
+        
+        // لاگ هوشمند:
+        if ($receivedRecordId !== $abpRecordId) {
+            add_log("Amin_Basic_Products_Rest: create_item => recordID converted from: " . $receivedRecordId . " to: " . $abpRecordId . " (by:viranet)");
+        } else {
+            add_log("Amin_Basic_Products_Rest: create_item => recordID: " . $abpRecordId . " (already lowercase) (by:viranet)");
+        }
+
         // END
         
-		$abpRecordId = $request['recordID'];
 		if ( $abpRecordId == null ) {
 			add_log("Amin_Basic_Products_Rest: create_item => error 6");
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The record id provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
@@ -396,7 +412,24 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 			}
 		}
 		*/
-		$abpRecordId = $request['recordID'];
+		
+		// ❌ حالت فعلی:
+		//$abpRecordId = $request['recordID'];
+		
+		// ✅ حالت اصلاح شده:
+        $receivedRecordId = $request['recordID'];
+        $abpRecordId = strtolower($receivedRecordId); // همیشه lowercase
+
+
+        // لاگ هوشمند:
+        if ($receivedRecordId !== $abpRecordId) {
+            add_log("Amin_Basic_Products_Rest: edit_item => recordID converted from: " . $receivedRecordId . " to: " . $abpRecordId . " (by:viranet)");
+        } else {
+            add_log("Amin_Basic_Products_Rest: edit_item => recordID: " . $abpRecordId . " (already lowercase)  (by:viranet)");
+        }
+
+        //END
+
 		if ( $abpRecordId == null ) {
 			add_log("Amin_Basic_Products_Rest: edit_item => error 2 ===> RecordId Parameter IS Null ");
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The record id provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
@@ -428,7 +461,7 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 		$product_data['description'] = $request['description'];
 		$product_data['sku'] = $request['technicalcode'];
 		$product_data['in_box'] = $request['inBox'];
-// 		$product_data['type_show'] = $request['typeShow'];
+        //$product_data['type_show'] = $request['typeShow'];
         
         // بخش بروز شده توسط ویرانت
         $receivedTypeShow = $request['typeShow'];
@@ -438,8 +471,8 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 		$product_data['taxable'] = $request['taxable'];
 		$product_data['attributes_code'] = $request['attributes_code'];
 
-// add_log(' recordID:' .$request['recordID'] . ' typeShow:' . $request['typeShow']);
-// 		$res = $this->edit_product( $product_object, $product_data );
+        // add_log(' recordID:' .$request['recordID'] . ' typeShow:' . $request['typeShow']);
+        // 		$res = $this->edit_product( $product_object, $product_data );
         
         // بخش بروز شده توسط ویرانت
         // 🔧 لاگ هوشمند:

@@ -214,3 +214,16 @@ recordID:12345 typeShow received: 0 → converted to: 2
 
 اگر امین null بفرسته:
 recordID:12345 typeShow received:  → converted to: 2
+
+
+
+📝 نمونه خروجی لاگ:
+
+اگر uppercase بیاد:
+Amin_Basic_Products_Rest: create_item => recordID converted from: ABC-123 to: abc-123
+
+اگر mixed case بیاد:
+Amin_Basic_Products_Rest: edit_item => recordID converted from: AbC-123 to: abc-123
+
+اگر lowercase بیاد:
+Amin_Basic_Products_Rest: create_item => recordID: abc-123 (already lowercase)
