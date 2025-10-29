@@ -1,29 +1,20 @@
 <?php
 
+
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              https://AliJannesary.ir
- * @since             1.0.0
- * @package           Amin_Basic
- *
  * @wordpress-plugin
- * Plugin Name:       Amin Basic
- * Plugin URI:        https://AliJannesary.ir
- * Description:       Plugin to connect Amin's accounting software to WordPress websites.
- * Version:           1403.06.20
- * Author:            Ali Jannesary
- * Author URI:        https://AliJannesary.ir
+ * Plugin Name:       Amin Basic - Dev Branch
+ * Plugin URI:        https://github.com/ttshahr/amin-basic
+ * Description:       Development version of Amin Basic connector - Customized by Viranet. Original plugin by Ali Jannesary.
+ * Version:           1.0.0
+ * Author:            Viranet - Based on Ali Jannesary's work
+ * Author URI:        https://thevira.net
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       amin-basic
  * Domain Path:       /languages
  */
+
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
