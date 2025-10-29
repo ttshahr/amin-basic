@@ -21,11 +21,18 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Current plugin version - Development Branch
+define( 'AMIN_BASIC_VERSION', '1.0.0' );
+define( 'AMIN_BASIC_BRANCH', 'development' );
+define( 'AMIN_BASIC_DEVELOPMENT_TEAM', 'thevira.net' );
+define( 'AMIN_BASIC_DASHBOARD_IMAGE', plugin_dir_url(__FILE__) . 'admin/images/' );
+
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
+
 define( 'AMIN_BASIC_VERSION', '1.1403.06.20' );
 define( 'AMIN_BASIC_DASHBOARD_IMAGE', plugin_dir_url(__FILE__) . 'admin/images/' );
 
