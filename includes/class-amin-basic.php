@@ -128,6 +128,9 @@ class Amin_Basic {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-amin-basic-public.php';
 
+		//viranet changes
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-amin-basic-viranet-menu.php';
+
 		$this->loader = new Amin_Basic_Loader();
 
 	}

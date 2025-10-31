@@ -6,7 +6,7 @@
  * Plugin Name:       Amin Basic - Dev Branch
  * Plugin URI:        https://github.com/ttshahr/amin-basic
  * Description:       Development version of Amin Basic connector - Customized by Viranet. Original plugin by Ali Jannesary.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Viranet - Based on Ali Jannesary's work
  * Author URI:        https://thevira.net
  * License:           GPL-2.0+
@@ -68,6 +68,8 @@ add_action('plugins_loaded','awdw');
 function awdw() {
 
 	require plugin_dir_path( __FILE__ ) . 'includes/class-amin-basic.php';
+	//viranet changes
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-amin-basic-viranet-menu.php';
 
 
 /**

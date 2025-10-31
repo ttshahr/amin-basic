@@ -70,6 +70,16 @@ class Amin_Basic_Admin_Menu {
 		);
 
 		add_action('load-' . $menu_suffix, array( $this, 'amin_help_dashboard_page' ));
+		
+		//viranet changes
+		$menu_suffix = add_submenu_page( 
+			'amin_dashboard',
+			'منوی ویرانت',
+			'ویرانت',
+			'manage_options', 
+			'amin_viranet_menu_page',
+			array( $this, 'amin_viranet_menu_page' )
+		);
 
 		add_submenu_page( 
 			'amin_dashboard',
@@ -132,7 +142,22 @@ class Amin_Basic_Admin_Menu {
 		add_action('load-' . $menu_suffix, array( $this, 'amin_process_table_customer' ));
 	
 	}
-	
+
+	//viranet changes
+    /**
+     * منوی ویرانت
+     */
+    public function amin_viranet_menu_page() {
+        $file_path = plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/view/amin-basic-view-viranet-menu.php';
+        
+        // بررسی وجود فایل
+        if ( file_exists( $file_path ) ) {
+            require_once $file_path;
+        } else {
+            wp_die( 'فایل منوی ویرانت یافت نشد: ' . $file_path );
+        }
+    }
+
 	/**
 	 * تنظیمات افزونه امین
 	 */
