@@ -227,19 +227,19 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
     
         
         // ❌ حالت فعلی:
-		$abpRecordId = $request['recordID'];
+		// $abpRecordId = $request['recordID'];
 		
 		// ✅ حالت اصلاح شده:
-        // $receivedRecordId = $request['recordID'];
-        // $abpRecordId = strtolower($receivedRecordId); // همیشه lowercase
+        $receivedRecordId = $request['recordID'];
+        $abpRecordId = strtolower($receivedRecordId); // همیشه lowercase
         
         
         // لاگ هوشمند:
-        // if ($receivedRecordId !== $abpRecordId) {
-        //     add_log("Amin_Basic_Products_Rest: create_item => recordID converted from: " . $receivedRecordId . " to: " . $abpRecordId . " (by:viranet)");
-        // } else {
-        //     add_log("Amin_Basic_Products_Rest: create_item => recordID: " . $abpRecordId . " (already lowercase) (by:viranet)");
-        // }
+        if ($receivedRecordId !== $abpRecordId) {
+            add_log("Amin_Basic_Products_Rest: create_item => recordID converted from: " . $receivedRecordId . " to: " . $abpRecordId . " (by:viranet)");
+        } else {
+            add_log("Amin_Basic_Products_Rest: create_item => recordID: " . $abpRecordId . " (already lowercase) (by:viranet)");
+        }
 
         // END
         
@@ -300,7 +300,7 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 			),
 		);
 		$products = get_posts($args);
-
+		// خطای error 7-3 برای تعریف محصول وجود دارد بررسی شود
 		if ( ! empty( $products ) && ! is_wp_error( $products ) ) {
 			add_log("Amin_Basic_Products_Rest: create_item => error 7-3 _sku: " . $request['technicalcode'] );
 			return new WP_Error( Amin_Basic_Response_Code::Product_Exist, __( 'A product with the code, sku provided already exists.' . $request['technicalcode'] ), array( 'status' => 400 ) );
