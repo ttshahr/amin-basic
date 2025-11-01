@@ -175,99 +175,99 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
     }
 
 	/**
-	 * Create product
+	 * Create item
 	 *
 	 * @param    WP_REST_Request         $request get data from request.
 	 * @return   mixed|WP_Error|WP_REST_Response
 	 */
 	public function create_item( $request ) {
 
+		add_log("🎯 Amin_Basic_Products_Rest: create_item => STARTED");
+		
 		$data = [];
+		
+		// لاگ تمام پارامترهای دریافتی
+		add_log("📥 Amin_Basic_Products_Rest: create_item => Received parameters: " . json_encode($request));
+		
 		if ( ! isset( $request['code'] ) || ! isset( $request['name'] ) || ! isset( $request['type_code'] ) || ! isset( $request['typeShow'] ) || ! isset( $request['recordID'] ) ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 1");
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 1 - Missing required parameters");
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'Please provide all required parameters.' ), array( 'status' => 400 ) );
 		}
 		
 		$abpCode = intval( $request['code'] );
 		if ( $abpCode <= 0 || $abpCode == null ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 2");
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 2 - Invalid code: " . $abpCode);
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The code provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
 		}
 
 		if ( $request['name'] == '' || $request['name'] == null ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 3");
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 3 - Empty name");
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The name provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
 		}
 
 		$abpTypeCode = intval( $request['type_code'] );
 		if ( $abpTypeCode <= 0 || $abpTypeCode == null ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 4");
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 4 - Invalid type_code: " . $abpTypeCode);
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The type code provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
 		}
 
-// 		$abpTypeShow = intval( $request['typeShow'] );
-// 		if ( ( $abpTypeShow != 2 && $abpTypeShow != 1 ) || $abpTypeShow == null ) {
-// 			add_log("Amin_Basic_Products_Rest: create_item => error 5");
-// 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The type show provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
-// 		}
-        //Start
-        // ✅ اعتبارسنجی کن ولی همیشه 2 ذخیره کن
-        
-        if ( !isset($request['typeShow']) || $request['typeShow'] == null ) {
-            add_log("Amin_Basic_Products_Rest: create_item => error 5 - typeShow is missing  (by:viranet)");
-            return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The type show provided doesn\'t in correct format. (by:viranet)' ), array( 'status' => 400 ) );
-        }
-        
-        // همیشه 2 رو ست کن
-        $abpTypeShow = 2;
-        
-        // لاگ برای دیباگ
-        add_log("Amin_Basic_Products_Rest: create_item => typeShow parameter received: " . $request['typeShow'] . ", but forced to 2  (by:viranet)");
-        
-    
-        
-        // ❌ حالت فعلی:
-		// $abpRecordId = $request['recordID'];
+		// 🔧 فورس typeShow به 2
+		if ( !isset($request['typeShow']) || $request['typeShow'] == null ) {
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 5 - typeShow is missing (by:viranet)");
+			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The type show provided doesn\'t in correct format. (by:viranet)' ), array( 'status' => 400 ) );
+		}
 		
-		// ✅ حالت اصلاح شده:
-        $receivedRecordId = $request['recordID'];
-        $abpRecordId = strtolower($receivedRecordId); // همیشه lowercase
-        
-        
-        // لاگ هوشمند:
-        if ($receivedRecordId !== $abpRecordId) {
-            add_log("Amin_Basic_Products_Rest: create_item => recordID converted from: " . $receivedRecordId . " to: " . $abpRecordId . " (by:viranet)");
-        } else {
-            add_log("Amin_Basic_Products_Rest: create_item => recordID: " . $abpRecordId . " (already lowercase) (by:viranet)");
-        }
+		// همیشه 2 رو ست کن
+		$abpTypeShow = 2;
+		
+		// لاگ هوشمند typeShow
+		if ($request['typeShow'] != '2') {
+			add_log("🔄 Amin_Basic_Products_Rest: create_item => typeShow received: " . $request['typeShow'] . " → converted to: 2 (by:viranet)");
+		} else {
+			add_log("✅ Amin_Basic_Products_Rest: create_item => typeShow: 2 (correct) (by:viranet)");
+		}
 
-        // END
-        
+		// 🔧 تبدیل recordID به lowercase
+		$receivedRecordId = $request['recordID'];
+		$abpRecordId = strtolower($receivedRecordId); // همیشه lowercase
+
+		// لاگ هوشمند recordID
+		if ($receivedRecordId !== $abpRecordId) {
+			add_log("🔄 Amin_Basic_Products_Rest: create_item => recordID converted from: " . $receivedRecordId . " to: " . $abpRecordId . " (by:viranet)");
+		} else {
+			add_log("✅ Amin_Basic_Products_Rest: create_item => recordID: " . $abpRecordId . " (already lowercase) (by:viranet)");
+		}
+
 		if ( $abpRecordId == null ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 6");
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 6 - recordID is null");
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The record id provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
 		}
 
+		add_log("🔍 Amin_Basic_Products_Rest: create_item => Checking for duplicate products...");
+
+		// چک تکراری نبودن با abpCode
 		$args = array(
 			'post_type'  => 'product',
 			'meta_query' => array(
 				array(
-				   'key'       => 'abpCode',
-				   'value'     => $abpCode,
-				   'compare'   => '='
+				'key'       => 'abpCode',
+				'value'     => $abpCode,
+				'compare'   => '='
 				)
 			),
 		);
 		$products = get_posts($args);
+		add_log("🔍 Amin_Basic_Products_Rest: create_item => Check abpCode: " . $abpCode . " - Found: " . count($products) . " products");
 
 		if ( ! empty( $products ) && ! is_wp_error( $products ) ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 7-1 abpCode: " . $abpCode );
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 7-1 - Product with abpCode already exists: " . $abpCode );
 			return new WP_Error( Amin_Basic_Response_Code::Product_Exist, __( 'A product with the code, Code provided already exists. ' . $abpCode ), array( 'status' => 400 ) );
 		} else if ( is_wp_error( $products ) ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 8");
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 8-1 - " . $products->get_error_message());
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( $products->get_error_message() ), array( 'status' => 400 ) );
 		}
 
+		// چک تکراری نبودن با abpRecordId
 		$args = array(
 			'post_type'  => 'product',
 			'meta_query' => array(
@@ -279,37 +279,66 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 			),
 		);
 		$products = get_posts($args);
+		add_log("🔍 Amin_Basic_Products_Rest: create_item => Check abpRecordId: " . $abpRecordId . " - Found: " . count($products) . " products");
 
 		if ( ! empty( $products ) && ! is_wp_error( $products ) ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 7-2 abpRecordId: " . $abpRecordId );
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 7-2 - Product with abpRecordId already exists: " . $abpRecordId );
 			return new WP_Error( Amin_Basic_Response_Code::Product_Exist, __( 'A product with the code, record id provided already exists.' . $abpRecordId ), array( 'status' => 400 ) );
 		} else if ( is_wp_error( $products ) ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 8");
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 8-2 - " . $products->get_error_message());
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( $products->get_error_message() ), array( 'status' => 400 ) );
 		}
 
+		// 🔧 مدیریت SKU - اگر خالی یا تکراری بود، خالی می‌ذاریم
+		$technicalCode = $request['technicalcode'];
+		$finalSku = ''; // پیش‌فرض خالی
+		
+		if (!empty($technicalCode) && $technicalCode != null) {
+			// چک تکراری نبودن با SKU فقط اگر خالی نبود
+			$args = array(
+				'post_type'  => 'product',
+				'meta_query' => array(
+					array(
+						'key'      => '_sku',
+						'value'    => $technicalCode,
+						'compare'  => '='
+					)
+				),
+			);
+			$products = get_posts($args);
+			add_log("🔍 Amin_Basic_Products_Rest: create_item => Check SKU: " . $technicalCode . " - Found: " . count($products) . " products");
 
-		$args = array(
-			'post_type'  => 'product',
-			'meta_query' => array(
-				array(
-					'key'      => '_sku',
-					'value'    => $request['technicalcode'],
-					'compare'  => '='
-				)
-			),
-		);
-		$products = get_posts($args);
-		// خطای error 7-3 برای تعریف محصول وجود دارد بررسی شود
-		if ( ! empty( $products ) && ! is_wp_error( $products ) ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 7-3 _sku: " . $request['technicalcode'] );
-			return new WP_Error( Amin_Basic_Response_Code::Product_Exist, __( 'A product with the code, sku provided already exists.' . $request['technicalcode'] ), array( 'status' => 400 ) );
-		} else if ( is_wp_error( $products ) ) {
-			add_log("Amin_Basic_Products_Rest: create_item => error 8");
-			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( $products->get_error_message() ), array( 'status' => 400 ) );
+			if ( ! empty( $products ) && ! is_wp_error( $products ) ) {
+				add_log("⚠️ Amin_Basic_Products_Rest: create_item => SKU already exists: " . $technicalCode . " → Setting SKU to empty");
+				
+				// اطلاعات محصول موجود رو لاگ کن
+				$existing_product = wc_get_product($products[0]->ID);
+				if ($existing_product) {
+					add_log("📋 Amin_Basic_Products_Rest: create_item => Existing product with same SKU - ID: " . $existing_product->get_id() . 
+						", Name: " . $existing_product->get_name() . 
+						", SKU: " . $existing_product->get_sku() .
+						", abpCode: " . get_post_meta($existing_product->get_id(), 'abpCode', true) .
+						", abpRecordId: " . get_post_meta($existing_product->get_id(), 'abpRecordId', true));
+				}
+				
+				// SKU رو خالی می‌ذاریم ولی خطا نمی‌دهیم
+				$finalSku = '';
+			} else if ( is_wp_error( $products ) ) {
+				add_log("❌ Amin_Basic_Products_Rest: create_item => error 8-3 - " . $products->get_error_message());
+				return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( $products->get_error_message() ), array( 'status' => 400 ) );
+			} else {
+				// SKU تکراری نیست، استفاده می‌کنیم
+				$finalSku = $technicalCode;
+				add_log("✅ Amin_Basic_Products_Rest: create_item => SKU is unique: " . $technicalCode);
+			}
+		} else {
+			add_log("ℹ️ Amin_Basic_Products_Rest: create_item => SKU is empty or null, proceeding with empty SKU");
+			$finalSku = '';
 		}
 
+		add_log("✅ Amin_Basic_Products_Rest: create_item => All duplicate checks passed");
 
+		// آماده‌سازی داده‌های محصول
 		$product_data['code'] = $request['code'];
 		$product_data['title'] = $request['name'];
 		$product_data['product_type'] = $request['product_type'];
@@ -317,143 +346,156 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 		$product_data['price'] = $request['price'];
 		$product_data['unit_name'] = $request['unitName'];
 		$product_data['description'] = $request['description'];
-		$product_data['sku'] = $request['technicalcode'];
+		$product_data['sku'] = $finalSku; // 🔧 استفاده از SKU نهایی (ممکنه خالی باشه)
 		$product_data['in_box'] = $request['inBox'];
-		$product_data['type_show'] = $request['typeShow'];
-		$product_data['recordID'] = $request['recordID'];
+		$product_data['type_show'] = $abpTypeShow; // 🔧 استفاده از مقدار فورس شده
+		$product_data['recordID'] = $abpRecordId; // 🔧 استفاده از نسخه lowercase شده
 		$product_data['taxable'] = $request['taxable'];
 		$product_data['attributes_code'] = $request['attributes_code'];
 
+		add_log("📦 Amin_Basic_Products_Rest: create_item => Final product_data: " . json_encode([
+			'title' => $product_data['title'],
+			'code' => $product_data['code'],
+			'type_show' => $product_data['type_show'],
+			'recordID' => $product_data['recordID'],
+			'sku' => $product_data['sku'] ? $product_data['sku'] : '(empty)',
+			'product_type' => $product_data['product_type']
+		]));
+
+		add_log("🚀 Amin_Basic_Products_Rest: create_item => Calling create_product...");
 		$res = $this->create_product($product_data);
+		
+		add_log("🔍 Amin_Basic_Products_Rest: create_item => create_product returned: " . ($res ? 'TRUE' : 'FALSE'));
 
 		if ( $res ) {
 			$data['code'] = Amin_Basic_Response_Code::Product_Created;
 			$data['message'] = __( 'Product has been successfully added.', '' );
 			$data['data'] = array( 'status' => 200 );
+			add_log("✅ Amin_Basic_Products_Rest: create_item => SUCCESS - Product created with SKU: " . ($finalSku ? $finalSku : '(empty)'));
 		} else {
-			add_log("Amin_Basic_Products_Rest: create_item => error 9");
+			add_log("❌ Amin_Basic_Products_Rest: create_item => error 9 - create_product returned FALSE");
 			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'Internal error.' ), array( 'status' => 400 ) );
 		}
 
-		add_log("Amin_Basic_Products_Rest: create_item => succeed");
+		add_log("🎉 Amin_Basic_Products_Rest: create_item => COMPLETED SUCCESSFULLY");
 		return rest_ensure_response( $data );
 	}
 
 	/**
-	 * Edit product
+	 * Edit item
 	 *
 	 * @param    WP_REST_Request         $request get data from request.
 	 * @return   mixed|WP_Error|WP_REST_Response
 	 */
-public function edit_item( $request ) {
+	public function edit_item( $request ) {
 
-    add_log("🎯 Amin_Basic_Products_Rest: edit_item => STARTED");
-    
-    $data = [];
-    
-    // لاگ تمام پارامترهای دریافتی
-    add_log("📥 Amin_Basic_Products_Rest: edit_item => Received parameters: " . json_encode($request));
-    
-    if ( ! isset( $request['recordID'] ) ) {
-        add_log("❌ Amin_Basic_Products_Rest: edit_item => error 1 ===> RecordId Parameter Not Send");
-        return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'Please provide all required parameters.' ), array( 'status' => 400 ) );
-    }
+		add_log("🎯 Amin_Basic_Products_Rest: edit_item => STARTED");
+		
+		$data = [];
+		
+		// لاگ تمام پارامترهای دریافتی
+		add_log("📥 Amin_Basic_Products_Rest: edit_item => Received parameters: " . json_encode($request));
+		
+		if ( ! isset( $request['recordID'] ) ) {
+			add_log("❌ Amin_Basic_Products_Rest: edit_item => error 1 ===> RecordId Parameter Not Send");
+			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'Please provide all required parameters.' ), array( 'status' => 400 ) );
+		}
 
-    // 🔧 تبدیل recordID به lowercase
-    $receivedRecordId = $request['recordID'];
-    $abpRecordId = strtolower($receivedRecordId); // همیشه lowercase
+		// 🔧 تبدیل recordID به lowercase
+		$receivedRecordId = $request['recordID'];
+		$abpRecordId = strtolower($receivedRecordId); // همیشه lowercase
 
-    // لاگ هوشمند recordID
-    if ($receivedRecordId !== $abpRecordId) {
-        add_log("🔄 Amin_Basic_Products_Rest: edit_item => recordID converted from: " . $receivedRecordId . " to: " . $abpRecordId . " (by:viranet)");
-    } else {
-        add_log("✅ Amin_Basic_Products_Rest: edit_item => recordID: " . $abpRecordId . " (already lowercase)  (by:viranet)");
-    }
+		// لاگ هوشمند recordID
+		if ($receivedRecordId !== $abpRecordId) {
+			add_log("🔄 Amin_Basic_Products_Rest: edit_item => recordID converted from: " . $receivedRecordId . " to: " . $abpRecordId . " (by:viranet)");
+		} else {
+			add_log("✅ Amin_Basic_Products_Rest: edit_item => recordID: " . $abpRecordId . " (already lowercase)  (by:viranet)");
+		}
 
-    if ( $abpRecordId == null ) {
-        add_log("❌ Amin_Basic_Products_Rest: edit_item => error 2 ===> RecordId Parameter IS Null ");
-        return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The record id provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
-    }
+		if ( $abpRecordId == null ) {
+			add_log("❌ Amin_Basic_Products_Rest: edit_item => error 2 ===> RecordId Parameter IS Null ");
+			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'The record id provided doesn\'t in correct format.' ), array( 'status' => 400 ) );
+		}
 
-    add_log("🔍 Amin_Basic_Products_Rest: edit_item => Searching for product with recordID: " . $abpRecordId);
-    
-    $args = array(
-        'meta_key'     => 'abpRecordId',
-        'meta_value'   => $abpRecordId,
-        'meta_compare' => '='
-    );
-    $products = wc_get_products( $args );
+		add_log("🔍 Amin_Basic_Products_Rest: edit_item => Searching for product with recordID: " . $abpRecordId);
+		
+		$args = array(
+			'meta_key'     => 'abpRecordId',
+			'meta_value'   => $abpRecordId,
+			'meta_compare' => '='
+		);
+		$products = wc_get_products( $args );
 
-    add_log("🔍 Amin_Basic_Products_Rest: edit_item => wc_get_products found: " . count($products) . " products");
-    
-    if ( empty( $products ) && ! is_wp_error( $products ) ) {
-        add_log("❌ Amin_Basic_Products_Rest: edit_item => error 3 ===> RecordId Not Exist IN Product: " . $abpRecordId );
-        return new WP_Error( Amin_Basic_Response_Code::Product_Not_Found, __( 'The record id provided doesn\'t exists.' ), array( 'status' => 400 ) );
-    } else if ( is_wp_error( $products ) ) {
-        add_log("❌ Amin_Basic_Products_Rest: edit_item => error 4 ===> " . $products->get_error_message());
-        return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( $products->get_error_message() ), array( 'status' => 400 ) );
-    }
+		add_log("🔍 Amin_Basic_Products_Rest: edit_item => wc_get_products found: " . count($products) . " products");
+		
+		if ( empty( $products ) && ! is_wp_error( $products ) ) {
+			add_log("❌ Amin_Basic_Products_Rest: edit_item => error 3 ===> RecordId Not Exist IN Product: " . $abpRecordId );
+			return new WP_Error( Amin_Basic_Response_Code::Product_Not_Found, __( 'The record id provided doesn\'t exists.' ), array( 'status' => 400 ) );
+		} else if ( is_wp_error( $products ) ) {
+			add_log("❌ Amin_Basic_Products_Rest: edit_item => error 4 ===> " . $products->get_error_message());
+			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( $products->get_error_message() ), array( 'status' => 400 ) );
+		}
 
-    $product_object = $products[0];
-    add_log("✅ Amin_Basic_Products_Rest: edit_item => Product found - ID: " . $product_object->get_id() . ", Name: " . $product_object->get_name());
+		$product_object = $products[0];
+		add_log("✅ Amin_Basic_Products_Rest: edit_item => Product found - ID: " . $product_object->get_id() . ", Name: " . $product_object->get_name());
 
-    // آماده‌سازی داده‌ها
-    $product_data['code'] = $request['code'];
-    $product_data['title'] = $request['name'];
-    $product_data['type_code'] = $request['type_code'];
-    $product_data['price'] = $request['price'];
-    $product_data['unit_name'] = $request['unitName'];
-    $product_data['description'] = $request['description'];
-    $product_data['sku'] = $request['technicalcode'];
-    $product_data['in_box'] = $request['inBox'];
-    
-    // 🔧 فورس typeShow به 2
-    $receivedTypeShow = $request['typeShow'];
-    $product_data['type_show'] = 2; // همیشه 2 باشه
-    
-    $product_data['recordID'] = $abpRecordId; // استفاده از نسخه lowercase شده
-    $product_data['taxable'] = $request['taxable'];
-    $product_data['attributes_code'] = $request['attributes_code'];
+		// آماده‌سازی داده‌ها
+		$product_data['code'] = $request['code'];
+		$product_data['title'] = $request['name'];
+		$product_data['type_code'] = $request['type_code'];
+		$product_data['price'] = $request['price'];
+		$product_data['unit_name'] = $request['unitName'];
+		$product_data['description'] = $request['description'];
+		$product_data['sku'] = $request['technicalcode'];
+		$product_data['in_box'] = $request['inBox'];
+		
+		// 🔧 فورس typeShow به 2
+		$receivedTypeShow = $request['typeShow'];
+		$product_data['type_show'] = 2; // همیشه 2 باشه
+		
+		$product_data['recordID'] = $abpRecordId; // استفاده از نسخه lowercase شده
+		$product_data['taxable'] = $request['taxable'];
+		$product_data['attributes_code'] = $request['attributes_code'];
 
-    // لاگ هوشمند typeShow
-    if ($receivedTypeShow != '2') {
-        add_log("🔄 Amin_Basic_Products_Rest: edit_item => typeShow received: " . $receivedTypeShow . " → converted to: 2 (by:viranet)");
-    } else {
-        add_log("✅ Amin_Basic_Products_Rest: edit_item => typeShow: 2 (correct) (by:viranet)");
-    }
+		// لاگ هوشمند typeShow
+		if ($receivedTypeShow != '2') {
+			add_log("🔄 Amin_Basic_Products_Rest: edit_item => typeShow received: " . $receivedTypeShow . " → converted to: 2 (by:viranet)");
+		} else {
+			add_log("✅ Amin_Basic_Products_Rest: edit_item => typeShow: 2 (correct) (by:viranet)");
+		}
 
-    // لاگ داده‌های نهایی
-    add_log("📦 Amin_Basic_Products_Rest: edit_item => Final product_data: " . json_encode([
-        'product_id' => $product_object->get_id(),
-        'title' => $product_data['title'],
-        'code' => $product_data['code'],
-        'type_show' => $product_data['type_show'],
-        'recordID' => $product_data['recordID'],
-        'price' => $product_data['price'],
-        'sku' => $product_data['sku']
-    ]));
+		// لاگ داده‌های نهایی
+		add_log("📦 Amin_Basic_Products_Rest: edit_item => Final product_data: " . json_encode([
+			'product_id' => $product_object->get_id(),
+			'title' => $product_data['title'],
+			'code' => $product_data['code'],
+			'type_show' => $product_data['type_show'],
+			'recordID' => $product_data['recordID'],
+			'price' => $product_data['price'],
+			'sku' => $product_data['sku']
+		]));
 
-    add_log("🚀 Amin_Basic_Products_Rest: edit_item => Calling edit_product...");
-    $res = $this->edit_product( $product_object, $product_data );
-    
-    add_log("🔍 Amin_Basic_Products_Rest: edit_item => edit_product returned: " . ($res ? 'TRUE' : 'FALSE'));
+		add_log("🚀 Amin_Basic_Products_Rest: edit_item => Calling edit_product...");
+		$res = $this->edit_product( $product_object, $product_data );
+		
+		add_log("🔍 Amin_Basic_Products_Rest: edit_item => edit_product returned: " . ($res ? 'TRUE' : 'FALSE'));
 
-    if ( $res ) {
-        $data['code'] = Amin_Basic_Response_Code::Product_Updated;
-        $data['message'] = __( 'Product has been successfully updated.', '' );
-        $data['data'] = array( 'status' => 200 );
-        add_log("✅ Amin_Basic_Products_Rest: edit_item => SUCCESS - Response prepared");
-    } else {
-        add_log("❌ Amin_Basic_Products_Rest: edit_item => error 5 - edit_product returned FALSE");
-        return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'Internal error.' ), array( 'status' => 400 ) );
-    }
+		if ( $res ) {
+			$data['code'] = Amin_Basic_Response_Code::Product_Updated;
+			$data['message'] = __( 'Product has been successfully updated.', '' );
+			$data['data'] = array( 'status' => 200 );
+			add_log("✅ Amin_Basic_Products_Rest: edit_item => SUCCESS - Response prepared");
+		} else {
+			add_log("❌ Amin_Basic_Products_Rest: edit_item => error 5 - edit_product returned FALSE");
+			return new WP_Error( Amin_Basic_Response_Code::Other_Errors, __( 'Internal error.' ), array( 'status' => 400 ) );
+		}
 
-    add_log("🎉 Amin_Basic_Products_Rest: edit_item => COMPLETED SUCCESSFULLY");
-    return rest_ensure_response( $data );
-}
+		add_log("🎉 Amin_Basic_Products_Rest: edit_item => COMPLETED SUCCESSFULLY");
+		return rest_ensure_response( $data );
+	}
 
 	/**
-	 * Delete product
+	 * Delete item
 	 *
 	 * @param    WP_REST_Request         $request get data from request.
 	 * @return   mixed|WP_Error|WP_REST_Response
@@ -674,8 +716,8 @@ public function edit_item( $request ) {
 		update_post_meta( $product_id, 'abpUnitName', $data['unit_name'] );
 		update_post_meta( $product_id, 'abpInBox', $data['in_box'] );
 		//viranet changes
-		// update_post_meta($product_id, 'abprecordid', strtolower($data['recordID']));
-		update_post_meta($product_id, 'abprecordid', $data['recordID'] );
+		// update_post_meta($product_id, 'abpRecordId', strtolower($data['recordID']));
+		update_post_meta($product_id, 'abpRecordId', $data['recordID'] );
 
 		$res = $product->save();
 
