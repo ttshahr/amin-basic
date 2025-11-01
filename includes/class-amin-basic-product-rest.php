@@ -180,6 +180,8 @@ class Amin_Basic_Products_Rest extends WC_REST_Products_Controller {
 	 * @param    WP_REST_Request         $request get data from request.
 	 * @return   mixed|WP_Error|WP_REST_Response
 	 */
+
+	// متد افزودن آیتم تغییر کرد بخش مطابقت در SKU
 	public function create_item( $request ) {
 
 		add_log("🎯 Amin_Basic_Products_Rest: create_item => STARTED");
